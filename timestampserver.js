@@ -23,7 +23,10 @@ app.get('/timestampserver/:time', function(req,res){
       unixDate = moment(req.params.time, "MMMM DD, YYYY").format("X");
       naturalDate = moment(unixDate, "X").format("MMMM DD, YYYY");
     }
-    
+  if (unixDate.toString() === "Invalid date") {
+    unixDate = null;
+    naturalDate = null;
+  }
    res.send(JSON.stringify({unix: unixDate, natural: naturalDate}));
  
 });
